@@ -43,6 +43,10 @@ export default function App() {
 		const classes = useStyles();
 
 		useEffect(() => {
+			axios.get('/data/get-data').then(function (response) {
+				// handle success
+				setRows(response.data.allData);
+			});
 			const interval = setInterval(() => {
 				axios.get('/data/get-data').then(function (response) {
 					// handle success
