@@ -73,6 +73,32 @@ export default function App() {
 			});
 		};
 
+		const getStatus = (time) => {
+			let statusTime = Date.now() - time;
+			if (statusTime >= 24 * 60 * 60 * 1000) {
+				return (
+					<>
+						<strong style={{ color: '#DD0939' }}>Dead</strong>
+					</>
+				);
+			} else if (
+				statusTime < 24 * 60 * 60 * 1000 &&
+				statusTime > 5 * 60 * 1000
+			) {
+				return (
+					<>
+						<strong style={{ color: '#A59715' }}>Offline</strong>
+					</>
+				);
+			} else if (statusTime < 5 * 60 * 1000) {
+				return (
+					<>
+						<strong style={{ color: '#71BE1E' }}>Online</strong>
+					</>
+				);
+			}
+		};
+
 		return (
 			<>
 				<Button onClick={() => handleBTN()} color={'primary'}>
@@ -141,7 +167,7 @@ export default function App() {
 												)}
 											</TableCell>
 											<TableCell align="right">
-												{row.status}
+												{getStatus(row.connection_date)}
 											</TableCell>
 											{userStatus === 'admin' ||
 											userStatus === 'creator' ? (
