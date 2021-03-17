@@ -43,20 +43,19 @@ export default function App() {
 		const classes = useStyles();
 
 		useEffect(() => {
-			axios.get('/data/get-data').then(function (response) {
-				// handle success
-				console.log(response.data);
-				setRows(response.data.allData);
-				// console.log(response);
-			});
+			const interval = setInterval(() => {
+				axios.get('/data/get-data').then(function (response) {
+					// handle success
+					setRows(response.data.allData);
+				});
+			}, 10000);
+			return () => clearInterval(interval);
 		}, []);
 
 		const handleBTN = () => {
 			axios.get('/data/get-data').then(function (response) {
 				// handle success
-				console.log(response.data);
 				setRows(response.data.allData);
-				// console.log(response);
 			});
 		};
 
@@ -66,9 +65,7 @@ export default function App() {
 			});
 			axios.get('/data/get-data').then(function (response) {
 				// handle success
-				console.log(response.data);
 				setRows(response.data.allData);
-				// console.log(response);
 			});
 		};
 
@@ -319,7 +316,6 @@ export default function App() {
 							setUserStatus(res.data.user.status);
 						}
 						setErrorMessage(res.data.message);
-						console.log(res.data);
 					});
 				setInputEmail('');
 				setInputPassword('');
@@ -416,7 +412,6 @@ export default function App() {
 			if (res.data.status) {
 				setUserStatus(res.data.status);
 			}
-			console.log(res.data);
 		});
 	}, []);
 
