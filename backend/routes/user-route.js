@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 import { UserModel } from '../Database/database.js';
+import e from 'express';
 
 dotenv.config();
 
@@ -86,13 +87,12 @@ route
 						}
 					});
 				} catch {}
-				const user = new UserModel({
-					name, // ФИО
-					email,
-					status,
+				await UserModel.create({
+					name: name, // ФИО
+					email: email,
+					status: status,
 					password: await bcrypt.hash(password, saltRounds),
 				});
-				await user.save();
 				res.json({ message: 'User has been created.', user });
 			} else
 				res.json({
