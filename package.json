@@ -17,5 +17,8 @@
 	"bugs": {
 		"url": "https://github.com/tixon337/SomeProject/issues"
 	},
+	"engines": {
+		"node": "14.x"
+	},
 	"homepage": "https://github.com/tixon337/SomeProject#readme"
 }
