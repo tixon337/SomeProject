@@ -13,7 +13,7 @@ const mail = process.env.MAIL_NAME.toString();
 const mailPass = process.env.MAIL_PASSWORD.toString();
 
 const transporter = nodemailer.createTransport({
-	host: 'smtp.gmail.com',
+	host: 'smtp.yandex.com',
 	port: 465,
 	secure: true,
 	auth: {
