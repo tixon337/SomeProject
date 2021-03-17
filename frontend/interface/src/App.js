@@ -43,39 +43,33 @@ export default function App() {
 		const classes = useStyles();
 
 		useEffect(() => {
-			axios
-				.get('http://localhost:3001/data/get-data')
-				.then(function (response) {
-					// handle success
-					console.log(response.data);
-					setRows(response.data.allData);
-					// console.log(response);
-				});
+			axios.get('/data/get-data').then(function (response) {
+				// handle success
+				console.log(response.data);
+				setRows(response.data.allData);
+				// console.log(response);
+			});
 		}, []);
 
 		const handleBTN = () => {
-			axios
-				.get('http://localhost:3001/data/get-data')
-				.then(function (response) {
-					// handle success
-					console.log(response.data);
-					setRows(response.data.allData);
-					// console.log(response);
-				});
+			axios.get('/data/get-data').then(function (response) {
+				// handle success
+				console.log(response.data);
+				setRows(response.data.allData);
+				// console.log(response);
+			});
 		};
 
 		const deleteData = (id) => {
-			axios.delete('http://localhost:3001/data/delete-data', {
+			axios.delete('data/delete-data', {
 				data: { _id: id },
 			});
-			axios
-				.get('http://localhost:3001/data/get-data')
-				.then(function (response) {
-					// handle success
-					console.log(response.data);
-					setRows(response.data.allData);
-					// console.log(response);
-				});
+			axios.get('/data/get-data').then(function (response) {
+				// handle success
+				console.log(response.data);
+				setRows(response.data.allData);
+				// console.log(response);
+			});
 		};
 
 		return (
@@ -192,7 +186,7 @@ export default function App() {
 		function createUser(event) {
 			event.preventDefault();
 			axios
-				.put('http://localhost:3001/user/create-user', {
+				.put('/user/create-user', {
 					name: inputName,
 					email: inputEmail,
 					status: selectValue,
@@ -297,7 +291,7 @@ export default function App() {
 			if (action === 'login') {
 				setModalOpen(true);
 			} else if (action === 'logout') {
-				axios.post('http://localhost:3001/user/logout').then((res) => {
+				axios.post('/user/logout').then((res) => {
 					if (res.data.message === 'Successful logout') {
 						setUserStatus('guest');
 					}
@@ -316,7 +310,7 @@ export default function App() {
 			function sendForm(event) {
 				event.preventDefault();
 				axios
-					.post('http://localhost:3001/user/login', {
+					.post('/user/login', {
 						email: inputEmail,
 						password: inputPassword,
 					})
@@ -418,7 +412,7 @@ export default function App() {
 	};
 
 	useEffect(() => {
-		axios.get('http://localhost:3001/user/get-status').then((res) => {
+		axios.get('/user/get-status').then((res) => {
 			if (res.data.status) {
 				setUserStatus(res.data.status);
 			}
