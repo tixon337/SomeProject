@@ -1,7 +1,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-underscore-dangle */
 import express from 'express';
-import { date } from 'faker';
 import { DataModel, UserModel, getData } from '../Database/database.js';
 
 const route = express.Router();
