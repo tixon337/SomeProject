@@ -29,6 +29,29 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const getStatus = (time) => {
+	let statusTime = Date.now() - time;
+	if (statusTime >= 24 * 60 * 60 * 1000) {
+		return (
+			<>
+				<strong style={{ color: '#DD0939' }}>Dead</strong>
+			</>
+		);
+	} else if (statusTime < 24 * 60 * 60 * 1000 && statusTime > 5 * 60 * 1000) {
+		return (
+			<>
+				<strong style={{ color: '#A59715' }}>Offline</strong>
+			</>
+		);
+	} else if (statusTime < 5 * 60 * 1000) {
+		return (
+			<>
+				<strong style={{ color: '#71BE1E' }}>Online</strong>
+			</>
+		);
+	}
+};
+
 const getTimeForTable = (time) => {
 	let date = new Date(time);
 	return <>{date.toString()}</>;
@@ -71,32 +94,6 @@ export default function App() {
 				// handle success
 				setRows(response.data.allData);
 			});
-		};
-
-		const getStatus = (time) => {
-			let statusTime = Date.now() - time;
-			if (statusTime >= 24 * 60 * 60 * 1000) {
-				return (
-					<>
-						<strong style={{ color: '#DD0939' }}>Dead</strong>
-					</>
-				);
-			} else if (
-				statusTime < 24 * 60 * 60 * 1000 &&
-				statusTime > 5 * 60 * 1000
-			) {
-				return (
-					<>
-						<strong style={{ color: '#A59715' }}>Offline</strong>
-					</>
-				);
-			} else if (statusTime < 5 * 60 * 1000) {
-				return (
-					<>
-						<strong style={{ color: '#71BE1E' }}>Online</strong>
-					</>
-				);
-			}
 		};
 
 		return (
