@@ -67,23 +67,25 @@ route
 				status === 'user' &&
 				req.session.user
 			) {
-				const send = {
-					from: `DataInterface admin" <${req.session.user.email}>`,
-					to: `${email}`,
-					subject: 'Аккаунт для dataInterface',
-					text: `
+				try {
+					const send = {
+						from: `DataInterface admin" <${req.session.user.email}>`,
+						to: `${email}`,
+						subject: 'Аккаунт для dataInterface',
+						text: `
           Привет, ${name}!
           Твой аккаунт от dataInterface:
           Логин: ${email}
           Пароль: ${password}`,
-				};
-				transporter.sendMail(send, (error, info) => {
-					if (error) {
-						console.log(error);
-					} else {
-						console.log(`email sent ${info.response}`);
-					}
-				});
+					};
+					transporter.sendMail(send, (error, info) => {
+						if (error) {
+							console.log(error);
+						} else {
+							console.log(`email sent ${info.response}`);
+						}
+					});
+				} catch {}
 				const user = new UserModel({
 					name, // ФИО
 					email,
