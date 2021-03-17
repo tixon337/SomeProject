@@ -31,6 +31,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const getStatus = (time) => {
 	let statusTime = Date.now() - time;
+	console.log(time);
+	console.log(statusTime);
 	if (statusTime >= 24 * 60 * 60 * 1000) {
 		return (
 			<>
