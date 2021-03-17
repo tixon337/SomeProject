@@ -3,8 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const uri =
-	'mongodb+srv://tixon:project25082000@someproject.bcp6t.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const uri = `mongodb+srv://tixon:${process.env.DATA_PASS}@someproject.bcp6t.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 try {
 	mongoose.connect(uri, {
 		useNewUrlParser: true,
