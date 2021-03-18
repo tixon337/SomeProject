@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 
 /// ////////////////////////////////////here will be ROUTES
 app.use('/user', userRoute);
-app.use('/data', dataRoute);
+app.use('/api', dataRoute);
 app.get('*', (req, res) => {
 	res.sendFile(path.resolve('../frontend/interface/build/index.html'));
 });

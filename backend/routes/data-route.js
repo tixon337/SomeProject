@@ -10,7 +10,7 @@ route.get('/get-data', async (req, res) => {
 	res.json({ allData });
 });
 
-route.post('/new-data', async (req, res) => {
+route.post('/clients', async (req, res) => {
 	try {
 		const dataArray = req.body;
 		for (const el of dataArray) {
