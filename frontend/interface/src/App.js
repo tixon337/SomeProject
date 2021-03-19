@@ -25,7 +25,7 @@ import Slide from '@material-ui/core/Slide';
 // import CancelIcon from '@material-ui/icons/Cancel';
 import { Input } from 'semantic-ui-react';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 	table: {
 		minWidth: 650,
 	},
