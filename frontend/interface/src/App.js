@@ -118,10 +118,10 @@ export default function App() {
 				<>
 					<strong>All count{' ' + rows.length + ' |'}</strong>
 					<strong style={{ color: '#DD0939' }}>
-						Dead{' ' + dead + ' |'}
+						Dead{' ' + dead + ' '}
 					</strong>
 					<strong style={{ color: '#A59715' }}>
-						Offline{' ' + offline + ' |'}
+						Offline{' ' + offline + ' '}
 					</strong>
 					<strong style={{ color: '#71BE1E' }}>
 						Online{' ' + online + ' '}
