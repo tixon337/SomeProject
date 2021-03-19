@@ -153,8 +153,8 @@ export default function App() {
 				<Button onClick={() => handleBTN()} color={'primary'}>
 					Обновить
 				</Button>
+				<DeadStatistic />
 				<div className="table-rows">
-					<DeadStatistic />
 					<TableContainer component={Paper}>
 						<Table
 							className={classes.table}
