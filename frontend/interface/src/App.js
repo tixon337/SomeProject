@@ -120,13 +120,16 @@ export default function App() {
 			return (
 				<>
 					<strong style={{ color: '#DD0939' }}>
-						Dead{' ' + dead}
+						All count{' ' + rows.length + ' '}
+					</strong>
+					<strong style={{ color: '#DD0939' }}>
+						Dead{' ' + dead + ' '}
 					</strong>
 					<strong style={{ color: '#A59715' }}>
-						Offline{' ' + offline}
+						Offline{' ' + offline + ' '}
 					</strong>
 					<strong style={{ color: '#71BE1E' }}>
-						Online{' ' + online}
+						Online{' ' + online + ' '}
 					</strong>
 				</>
 			);
