@@ -12,29 +12,28 @@ route.get('/get-data', async (req, res) => {
 
 route.post('/clients', async (req, res) => {
 	try {
-		const data = req.body;
-		let oneNote = await DataModel.findOne({ Uid: data.Uid });
+		let oneNote = await DataModel.findOne({ Uid: req.body.Uid });
 		if (oneNote) {
 			oneNote = {
-				Uid: data.Uid,
-				IP: data.IP,
-				LocalMachineTime: data.LocalMachineTime,
-				OS: data.OS,
-				Version: data.Version,
-				b2b: data.b2b,
-				id_sales: data.id_sales,
+				Uid: req.body.Uid,
+				IP: req.body.IP,
+				LocalMachineTime: req.body.LocalMachineTime,
+				OS: req.body.OS,
+				Version: req.body.Version,
+				b2b: req.body.b2b,
+				id_sales: req.body.id_sales,
 				connection_date: Date.now(),
 			};
 			await oneNote.save();
 		} else {
 			await DataModel.create({
-				Uid: data.Uid,
-				IP: data.IP,
-				LocalMachineTime: data.LocalMachineTime,
-				OS: data.OS,
-				Version: data.Version,
-				b2b: data.b2b,
-				id_sales: data.id_sales,
+				Uid: req.body.Uid,
+				IP: req.body.IP,
+				LocalMachineTime: req.body.LocalMachineTime,
+				OS: req.body.OS,
+				Version: req.body.Version,
+				b2b: req.body.b2b,
+				id_sales: req.body.id_sales,
 				connection_date: Date.now(),
 			});
 		}
