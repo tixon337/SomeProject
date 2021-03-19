@@ -68,12 +68,12 @@ export default function App() {
 		const classes = useStyles();
 
 		useEffect(() => {
-			axios.get('/data/get-data').then(function (response) {
+			axios.get('/api/get-data').then(function (response) {
 				// handle success
 				setRows(response.data.allData);
 			});
 			const interval = setInterval(() => {
-				axios.get('/data/get-data').then(function (response) {
+				axios.get('/api/get-data').then(function (response) {
 					// handle success
 					setRows(response.data.allData);
 				});
@@ -82,14 +82,14 @@ export default function App() {
 		}, []);
 
 		const handleBTN = () => {
-			axios.get('/data/get-data').then(function (response) {
+			axios.get('/api/get-data').then(function (response) {
 				// handle success
 				setRows(response.data.allData);
 			});
 		};
 
 		const deleteData = (id) => {
-			axios.delete('data/delete-data', {
+			axios.delete('api/delete-data', {
 				data: { _id: id },
 			});
 			axios.get('/data/get-data').then(function (response) {
