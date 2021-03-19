@@ -31,8 +31,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const getStatus = (time) => {
 	let statusTime = Date.now() - Date.parse(time);
-	console.log(time);
-	console.log(statusTime);
 	if (statusTime >= 24 * 60 * 60 * 1000) {
 		return (
 			<>
@@ -101,12 +99,46 @@ export default function App() {
 				});
 		};
 
+		const DeadStatistic = () => {
+			let dead = 0;
+			let offline = 0;
+			let online = 0;
+			rows.forEach((row) => {
+				let statusTime = Date.now() - Date.parse(row.connection_date);
+				if (statusTime >= 24 * 60 * 60 * 1000) {
+					dead++;
+				} else if (
+					statusTime < 24 * 60 * 60 * 1000 &&
+					statusTime > 5 * 60 * 1000
+				) {
+					offline++;
+				} else if (statusTime < 5 * 60 * 1000) {
+					online++;
+				}
+			});
+
+			return (
+				<>
+					<strong style={{ color: '#DD0939' }}>
+						Dead{' ' + dead}
+					</strong>
+					<strong style={{ color: '#A59715' }}>
+						Offline{' ' + offline}
+					</strong>
+					<strong style={{ color: '#71BE1E' }}>
+						Online{' ' + online}
+					</strong>
+				</>
+			);
+		};
+
 		return (
 			<>
 				<Button onClick={() => handleBTN()} color={'primary'}>
 					Обновить
 				</Button>
 				<div className="table-rows">
+					<DeadStatistic />
 					<TableContainer component={Paper}>
 						<Table
 							className={classes.table}
