@@ -14,16 +14,14 @@ route.post('/clients', async (req, res) => {
 	try {
 		let oneNote = await DataModel.findOne({ Uid: req.body.Uid });
 		if (oneNote) {
-			oneNote = {
-				Uid: req.body.Uid,
-				IP: req.body.IP,
-				LocalMachineTime: req.body.LocalMachineTime,
-				OS: req.body.OS,
-				Version: req.body.Version,
-				b2b: req.body.b2b,
-				id_sales: req.body.id_sales,
-				connection_date: Date.now(),
-			};
+			oneNote.Uid = req.body.Uid;
+			oneNote.IP = req.body.IP;
+			oneNote.LocalMachineTime = req.body.LocalMachineTime;
+			oneNote.OS = req.body.OS;
+			oneNote.Version = req.body.Version;
+			oneNote.b2b = req.body.b2b;
+			oneNote.id_sales = req.body.id_sales;
+			oneNote.connection_date = Date.now();
 			await oneNote.save();
 		} else {
 			await DataModel.create({
