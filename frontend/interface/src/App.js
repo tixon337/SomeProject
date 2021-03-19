@@ -89,13 +89,16 @@ export default function App() {
 		};
 
 		const deleteData = (id) => {
-			axios.delete('api/delete-data', {
-				data: { _id: id },
-			});
-			axios.get('/data/get-data').then(function (response) {
-				// handle success
-				setRows(response.data.allData);
-			});
+			axios
+				.delete('api/delete-data', {
+					data: { _id: id },
+				})
+				.then(() => {
+					axios.get('/data/get-data').then(function (response) {
+						// handle success
+						setRows(response.data.allData);
+					});
+				});
 		};
 
 		return (
