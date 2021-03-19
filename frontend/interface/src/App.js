@@ -92,10 +92,7 @@ export default function App() {
 					data: { _id: id },
 				})
 				.then(() => {
-					axios.get('/data/get-data').then(function (response) {
-						// handle success
-						setRows(response.data.allData);
-					});
+					setRows(rows.filter((el) => el._id !== id));
 				});
 		};
 
@@ -119,14 +116,12 @@ export default function App() {
 
 			return (
 				<>
+					<strong>All count{' ' + rows.length + ' |'}</strong>
 					<strong style={{ color: '#DD0939' }}>
-						All count{' ' + rows.length + ' '}
-					</strong>
-					<strong style={{ color: '#DD0939' }}>
-						Dead{' ' + dead + ' '}
+						Dead{' ' + dead + ' |'}
 					</strong>
 					<strong style={{ color: '#A59715' }}>
-						Offline{' ' + offline + ' '}
+						Offline{' ' + offline + ' |'}
 					</strong>
 					<strong style={{ color: '#71BE1E' }}>
 						Online{' ' + online + ' '}
