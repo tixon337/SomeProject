@@ -12,33 +12,31 @@ route.get('/get-data', async (req, res) => {
 
 route.post('/new-data', async (req, res) => {
 	try {
-		const dataArray = req.body;
-		for (const el of dataArray) {
-			let oneNote = await DataModel.findOne({ Uid: el.Uid });
-			if (oneNote) {
-				oneNote = {
-					Uid: el.Uid,
-					IP: el.IP,
-					LocalMachineTime: el.LocalMachineTime,
-					OS: el.OS,
-					Version: el.Version,
-					b2b: el.b2b,
-					id_sales: el.id_sales,
-					connection_date: Date.now(),
-				};
-				await oneNote.save();
-			} else {
-				await DataModel.create({
-					Uid: el.Uid,
-					IP: el.IP,
-					LocalMachineTime: el.LocalMachineTime,
-					OS: el.OS,
-					Version: el.Version,
-					b2b: el.b2b,
-					id_sales: el.id_sales,
-					connection_date: Date.now(),
-				});
-			}
+		const data = req.body;
+		let oneNote = await DataModel.findOne({ Uid: data.Uid });
+		if (oneNote) {
+			oneNote = {
+				Uid: data.Uid,
+				IP: data.IP,
+				LocalMachineTime: data.LocalMachineTime,
+				OS: data.OS,
+				Version: data.Version,
+				b2b: data.b2b,
+				id_sales: data.id_sales,
+				connection_date: Date.now(),
+			};
+			await oneNote.save();
+		} else {
+			await DataModel.create({
+				Uid: data.Uid,
+				IP: data.IP,
+				LocalMachineTime: data.LocalMachineTime,
+				OS: data.OS,
+				Version: data.Version,
+				b2b: data.b2b,
+				id_sales: data.id_sales,
+				connection_date: Date.now(),
+			});
 		}
 		res.json({ message: 'Data has been added' });
 	} catch {
