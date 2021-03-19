@@ -68,12 +68,24 @@ export default function App() {
 		useEffect(() => {
 			axios.get('/api/get-data').then(function (response) {
 				// handle success
-				setRows(response.data.allData);
+				setRows(
+					response.data.allData.sort(
+						(a, b) =>
+							Date.parse(a.connection_date) -
+							Date.parse(b.connection_date)
+					)
+				);
 			});
 			const interval = setInterval(() => {
 				axios.get('/api/get-data').then(function (response) {
 					// handle success
-					setRows(response.data.allData);
+					setRows(
+						response.data.allData.sort(
+							(a, b) =>
+								Date.parse(a.connection_date) -
+								Date.parse(b.connection_date)
+						)
+					);
 				});
 			}, 5000);
 			return () => clearInterval(interval);
@@ -82,7 +94,13 @@ export default function App() {
 		const handleBTN = () => {
 			axios.get('/api/get-data').then(function (response) {
 				// handle success
-				setRows(response.data.allData);
+				setRows(
+					response.data.allData.sort(
+						(a, b) =>
+							Date.parse(a.connection_date) -
+							Date.parse(b.connection_date)
+					)
+				);
 			});
 		};
 
