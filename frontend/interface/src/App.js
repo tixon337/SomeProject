@@ -118,7 +118,9 @@ export default function App() {
 
 			useEffect(() => {
 				let rowsofKey = rows.map((el) => el[placeholder]);
+				console.log(rowsofKey);
 				setKeyOfFilter([...new Set(rowsofKey)]);
+				console.log([...new Set(rowsofKey)]);
 			}, [placeholder]);
 
 			return (
