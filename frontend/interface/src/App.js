@@ -9,7 +9,13 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Button } from '@material-ui/core';
+import {
+	Button,
+	FormControl,
+	InputLabel,
+	MenuItem,
+	Select,
+} from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -22,6 +28,13 @@ import { Input } from 'semantic-ui-react';
 const useStyles = makeStyles({
 	table: {
 		minWidth: 650,
+	},
+	formControl: {
+		margin: theme.spacing(1),
+		minWidth: 120,
+	},
+	selectEmpty: {
+		marginTop: theme.spacing(2),
 	},
 });
 
@@ -90,6 +103,44 @@ export default function App() {
 			}, 5000);
 			return () => clearInterval(interval);
 		}, []);
+
+		const FilterSelect = (placeholder) => {
+			const classes = useStyles();
+			const [valueOfSelector, setValueOfSelector] = useState('');
+			let [keyOfFilter, setKeyOfFilter] = useState([]);
+
+			const handleChange = (event) => {
+				setValueOfSelector(event.target.value);
+				setRows(
+					rows.filter((el) => el[placeholder] === event.target.value)
+				);
+			};
+
+			useEffect(() => {
+				let rowsofKey = rows.map((el) => el[placeholder]);
+				setKeyOfFilter([...new Set(rowsofKey)]);
+			}, [placeholder]);
+
+			return (
+				<div>
+					<FormControl className={classes.formControl}>
+						<InputLabel id="demo-simple-select-label">
+							{placeholder}
+						</InputLabel>
+						<Select
+							labelId="demo-simple-select-label"
+							id="demo-simple-select"
+							value={valueOfSelector}
+							onChange={handleChange}
+						>
+							{keyOfFilter.map((el) => {
+								return <MenuItem value={el}>{el}</MenuItem>;
+							})}
+						</Select>
+					</FormControl>
+				</div>
+			);
+		};
 
 		const handleBTN = () => {
 			axios.get('/api/get-data').then(function (response) {
@@ -163,21 +214,31 @@ export default function App() {
 						>
 							<TableHead>
 								<TableRow>
-									<TableCell>Uid</TableCell>
-									<TableCell align="right">IP</TableCell>
+									<TableCell>{FilterSelect('Uid')}</TableCell>
 									<TableCell align="right">
-										LocalMachineTime
-									</TableCell>
-									<TableCell align="right">OS</TableCell>
-									<TableCell align="right">Version</TableCell>
-									<TableCell align="right">b2b</TableCell>
-									<TableCell align="right">
-										id_sales
+										{FilterSelect('IP')}
 									</TableCell>
 									<TableCell align="right">
-										connection_date
+										{FilterSelect('LocalMachineTime')}
 									</TableCell>
-									<TableCell align="right">status</TableCell>
+									<TableCell align="right">
+										{FilterSelect('OS')}
+									</TableCell>
+									<TableCell align="right">
+										{FilterSelect('Version')}
+									</TableCell>
+									<TableCell align="right">
+										{FilterSelect('b2b')}
+									</TableCell>
+									<TableCell align="right">
+										{FilterSelect('id_sales')}
+									</TableCell>
+									<TableCell align="right">
+										{FilterSelect('connection_date')}
+									</TableCell>
+									<TableCell align="right">
+										{FilterSelect('status')}
+									</TableCell>
 									{userStatus === 'admin' ||
 									userStatus === 'creator' ? (
 										<TableCell align="right"></TableCell>
