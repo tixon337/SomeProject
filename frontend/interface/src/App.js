@@ -71,8 +71,8 @@ export default function App() {
 				setRows(
 					response.data.allData.sort(
 						(a, b) =>
-							Date.parse(a.connection_date) -
-							Date.parse(b.connection_date)
+							Date.parse(b.connection_date) -
+							Date.parse(a.connection_date)
 					)
 				);
 			});
@@ -82,8 +82,8 @@ export default function App() {
 					setRows(
 						response.data.allData.sort(
 							(a, b) =>
-								Date.parse(a.connection_date) -
-								Date.parse(b.connection_date)
+								Date.parse(b.connection_date) -
+								Date.parse(a.connection_date)
 						)
 					);
 				});
@@ -97,8 +97,8 @@ export default function App() {
 				setRows(
 					response.data.allData.sort(
 						(a, b) =>
-							Date.parse(a.connection_date) -
-							Date.parse(b.connection_date)
+							Date.parse(b.connection_date) -
+							Date.parse(a.connection_date)
 					)
 				);
 			});
@@ -134,7 +134,7 @@ export default function App() {
 
 			return (
 				<>
-					<strong>All count{' ' + rows.length + ' |'}</strong>
+					<strong>All count{' ' + rows.length + '  '}</strong>
 					<strong style={{ color: '#DD0939' }}>
 						Dead{' ' + dead + ' '}
 					</strong>
