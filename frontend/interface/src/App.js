@@ -110,20 +110,15 @@ export default function App() {
 			const [keyOfFilter, setKeyOfFilter] = useState([]);
 
 			const handleChange = (event) => {
-				setValueOfSelector(event.target.value);
-				setRows(
-					rows.filter(
-						(el) => el[`{$placeholder}`] === event.target.value
-					)
-				);
-			};
-
-			useEffect(() => {
-				let rowsofKey = rows.map((el) => el[`{$placeholder}`]);
+				let rowsofKey = rows.map((el) => el[placeholder]);
 				console.log(rowsofKey);
 				setKeyOfFilter([...new Set(rowsofKey)]);
 				console.log([...new Set(rowsofKey)]);
-			}, []);
+				setValueOfSelector(event.target.value);
+				setRows(
+					rows.filter((el) => el[placeholder] === event.target.value)
+				);
+			};
 
 			return (
 				<div>
