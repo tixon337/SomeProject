@@ -110,14 +110,17 @@ export default function App() {
 			const [keyOfFilter, setKeyOfFilter] = useState([]);
 
 			const handleChange = (event) => {
-				let rowsofKey = rows.map((el) => el[placeholder]);
-				console.log(rowsofKey);
-				setKeyOfFilter([...new Set(rowsofKey)]);
-				console.log([...new Set(rowsofKey)]);
 				setValueOfSelector(event.target.value);
 				setRows(
 					rows.filter((el) => el[placeholder] === event.target.value)
 				);
+			};
+
+			const handleClick = () => {
+				let rowsofKey = rows.map((el) => el[placeholder]);
+				console.log(rowsofKey);
+				setKeyOfFilter([...new Set(rowsofKey)]);
+				console.log([...new Set(rowsofKey)]);
 			};
 
 			return (
@@ -131,6 +134,7 @@ export default function App() {
 							id="demo-simple-select"
 							value={valueOfSelector}
 							onChange={handleChange}
+							onClick={() => handleClick()}
 						>
 							{keyOfFilter.map((el) => {
 								return <MenuItem value={el}>{el}</MenuItem>;
