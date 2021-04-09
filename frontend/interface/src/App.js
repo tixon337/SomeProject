@@ -73,6 +73,7 @@ const getTimeForTable = (time) => {
 
 const getConnectionDate = (time) => {
 	let date = new Date(time);
+	return <>{date.toLocaleString()}</>;
 };
 
 export default function App() {
@@ -282,14 +283,7 @@ export default function App() {
 												{row.id_sales}
 											</TableCell>
 											<TableCell align="right">
-												{() => (
-													<>
-														{new Date(
-															row.connection_date
-														).toString()}
-													</>
-												)}
-											</TableCell>
+												{getConnectionDate(row.connection_date)>
 											<TableCell align="right">
 												{getStatus(row.connection_date)}
 											</TableCell>
