@@ -281,7 +281,7 @@ export default function App() {
 												{() =>
 													new Date(
 														row.connection_date
-													)
+													).toString()
 												}
 											</TableCell>
 											<TableCell align="right">
