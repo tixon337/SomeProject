@@ -278,9 +278,11 @@ export default function App() {
 												{row.id_sales}
 											</TableCell>
 											<TableCell align="right">
-												{getTimeForTable(
-													row.connection_date
-												)}
+												{() =>
+													new Date(
+														row.connection_date
+													)
+												}
 											</TableCell>
 											<TableCell align="right">
 												{getStatus(row.connection_date)}
