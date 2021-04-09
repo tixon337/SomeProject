@@ -70,7 +70,9 @@ const getTimeForTable = (time) => {
 	console.log(date.getTimezoneOffset());
 	return (
 		<>
-			{date.toLocaleString('en-US', { timeZone: date.getTimezoneOffset })}
+			{date.toLocaleString('en-US', {
+				timeZone: date.getTimezoneOffset(),
+			})}
 		</>
 	);
 };
