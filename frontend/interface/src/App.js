@@ -67,7 +67,12 @@ const getStatus = (time) => {
 
 const getTimeForTable = (time) => {
 	let date = new Date(time);
-	return <>{date.toString()}</>;
+	console.log(date.getTimezoneOffset());
+	return (
+		<>
+			{date.toLocaleString('en-US', { timeZone: date.getTimezoneOffset })}
+		</>
+	);
 };
 
 export default function App() {
@@ -76,6 +81,7 @@ export default function App() {
 
 	const TableRows = () => {
 		const [rows, setRows] = useState([]);
+		const [filter, setFilter] = useState(null);
 		const classes = useStyles();
 
 		useEffect(() => {
@@ -134,7 +140,7 @@ export default function App() {
 							id="demo-simple-select"
 							value={valueOfSelector}
 							onChange={handleChange}
-							onClick={() => handleClick()}
+							onSelect={() => handleClick()}
 						>
 							{keyOfFilter.map((el) => {
 								return <MenuItem value={el}>{el}</MenuItem>;
