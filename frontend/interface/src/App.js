@@ -67,7 +67,6 @@ const getStatus = (time) => {
 
 const getTimeForTable = (time) => {
 	let date = new Date(time);
-	console.log(date.getTimezoneOffset());
 	return <>{date.toLocaleString()}</>;
 };
 
