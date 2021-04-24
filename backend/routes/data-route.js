@@ -41,14 +41,14 @@ route.post('/clients', async (req, res) => {
 				b2b: req.body.b2b,
 				id_sales: req.body.id_sales,
 				connection_date: Date.now(),
-				LIP = req.body.LIP,
-				AV = req.body.AV,
-				Country = req.body.Country,
-				City = req.body.City,
-				cl_name = req.body.cl_name,
-				cl_mail = req.body.cl_mail,
-				cl_wrole = req.body.cl_wrole,
-				cl_feedback = req.body.cl_feedback,
+				LIP: req.body.LIP,
+				AV: req.body.AV,
+				Country: req.body.Country,
+				City: req.body.City,
+				cl_name: req.body.cl_name,
+				cl_mail: req.body.cl_mail,
+				cl_wrole: req.body.cl_wrole,
+				cl_feedback: req.body.cl_feedback,
 			});
 		}
 		res.json({ message: 'Data has been added' });
