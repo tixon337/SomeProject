@@ -22,6 +22,14 @@ route.post('/clients', async (req, res) => {
 			oneNote.b2b = req.body.b2b;
 			oneNote.id_sales = req.body.id_sales;
 			oneNote.connection_date = Date.now();
+			oneNote.LIP = req.body.LIP;
+			oneNote.AV = req.body.AV;
+			oneNote.Country = req.body.Country;
+			oneNote.City = req.body.City;
+			oneNote.cl_name = req.body.cl_name;
+			oneNote.cl_mail = req.body.cl_mail;
+			oneNote.cl_wrole = req.body.cl_wrole;
+			oneNote.cl_feedback = req.body.cl_feedback;
 			await oneNote.save();
 		} else {
 			await DataModel.create({
@@ -33,6 +41,14 @@ route.post('/clients', async (req, res) => {
 				b2b: req.body.b2b,
 				id_sales: req.body.id_sales,
 				connection_date: Date.now(),
+				LIP = req.body.LIP,
+				AV = req.body.AV,
+				Country = req.body.Country,
+				City = req.body.City,
+				cl_name = req.body.cl_name,
+				cl_mail = req.body.cl_mail,
+				cl_wrole = req.body.cl_wrole,
+				cl_feedback = req.body.cl_feedback,
 			});
 		}
 		res.json({ message: 'Data has been added' });

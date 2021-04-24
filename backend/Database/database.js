@@ -19,7 +19,6 @@ db.on('error', console.error.bind(console, 'Ошибка соединения с
 
 const User = new mongoose.Schema({
 	name: {
-		// ФИО
 		type: String,
 		required: true,
 	},
@@ -46,6 +45,14 @@ const Data = new mongoose.Schema({
 	id_sales: { type: String },
 	connection_date: { type: Date },
 	status: { type: Number },
+	LIP: { type: String },
+	AV: { type: String },
+	Country: { type: String },
+	City: { type: String },
+	cl_name: { type: String },
+	cl_mail: { type: String },
+	cl_wrole: { type: String },
+	cl_feedback: { type: String },
 });
 
 export const UserModel = mongoose.model('User', User);

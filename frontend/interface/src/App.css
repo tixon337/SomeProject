@@ -2,8 +2,9 @@
 	text-align: center;
 }
 
-.table-rows {
+.-rows {
 	margin: 20px;
 	height: 80vh;
 	overflow-y: scroll;
+	overflow-x: scroll;
 }
